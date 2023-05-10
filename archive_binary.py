@@ -83,45 +83,45 @@ def build(release_version):
                 elif module_type in multi_module_list:
                     if module_type == "network":
                         # check e103
-                        e103_version_dir = os.path.join(module_firmware_path, ele, "e103")
+                        e103_version_dir = os.path.join(module_firmware_path, module_type, "e103")
                         e103_version_list = os.listdir(e103_version_dir)
                         e103_version_list = sorted(e103_version_list, key=cmp_to_key(compare_version), reverse=True)
                         if len(e103_version_list):
                             latest_version["network_e103"] = e103_version_list[0]
                         # check esp32 app
-                        esp32_app_version_dir = os.path.join(module_firmware_path, ele, "esp32", "app")
+                        esp32_app_version_dir = os.path.join(module_firmware_path, module_type, "esp32", "app")
                         esp32_app_version_list = os.listdir(esp32_app_version_dir)
                         esp32_app_version_list = sorted(esp32_app_version_list, key=cmp_to_key(compare_version), reverse=True)
                         if len(esp32_app_version_list):
                             latest_version["network_esp32_app"] = esp32_app_version_list[0]
                         # check esp32 ota
-                        esp32_ota_version_dir = os.path.join(module_firmware_path, ele, "esp32", "ota")
+                        esp32_ota_version_dir = os.path.join(module_firmware_path, module_type, "esp32", "ota")
                         esp32_ota_version_list = os.listdir(esp32_ota_version_dir)
                         esp32_ota_version_list = sorted(esp32_ota_version_list, key=cmp_to_key(compare_version), reverse=True)
                         if len(esp32_ota_version_list):
                             latest_version["network_esp32_ota"] = esp32_ota_version_list[0]
                     elif module_type == "camera":
                         # check e103
-                        e103_version_dir = os.path.join(module_firmware_path, ele, "e103")
+                        e103_version_dir = os.path.join(module_firmware_path, module_type, "e103")
                         e103_version_list = os.listdir(e103_version_dir)
                         e103_version_list = sorted(e103_version_list, key=cmp_to_key(compare_version), reverse=True)
                         if len(e103_version_list):
                             latest_version["camera_e103"] = e103_version_list[0]
                         # check esp32s3 app
-                        esp32s3_app_version_dir = os.path.join(module_firmware_path, ele, "esp32s3", "app")
+                        esp32s3_app_version_dir = os.path.join(module_firmware_path, module_type, "esp32s3", "app")
                         esp32s3_app_version_list = os.listdir(esp32s3_app_version_dir)
                         esp32s3_app_version_list = sorted(esp32s3_app_version_list, key=cmp_to_key(compare_version), reverse=True)
                         if len(esp32s3_app_version_list):
                             latest_version["camera_esp32s3_app"] = esp32s3_app_version_list[0]
                     elif module_type == "bootloader":
                         # check e230
-                        bootloader_e230_version_dir = os.path.join(module_firmware_path, ele, "e230")
+                        bootloader_e230_version_dir = os.path.join(module_firmware_path, module_type, "e230")
                         bootloader_e230_version_list = os.listdir(bootloader_e230_version_dir)
                         bootloader_e230_version_list = sorted(bootloader_e230_version_list, key=cmp_to_key(compare_version), reverse=True)
                         if len(bootloader_e230_version_list):
                             latest_version["bootloader_e230"] = bootloader_e230_version_list[0]
                         # check e103
-                        bootloader_e103_version_dir = os.path.join(module_firmware_path, ele, "e103")
+                        bootloader_e103_version_dir = os.path.join(module_firmware_path, module_type, "e103")
                         bootloader_e103_version_list = os.listdir(bootloader_e103_version_dir)
                         bootloader_e103_version_list = sorted(bootloader_e103_version_list, key=cmp_to_key(compare_version), reverse=True)
                         if len(bootloader_e103_version_list):
@@ -129,7 +129,7 @@ def build(release_version):
 
         if len(latest_version) != 0:
             latest_version["release"] = release_version
-            version_path = os.path.join(archive_path, "version.txt")
+            version_path = os.path.join(archive_path, "version.json")
             data = json.dumps(latest_version, indent=4, sort_keys=True)
             with open(version_path, "w") as version_file:
                 version_file.write(data)
@@ -143,10 +143,8 @@ def build(release_version):
         return True
 
     def build_firmware():
-        root = os.path.dirname(__file__)
-
         # read version info
-        version_path = os.path.join(archive_path, "version.txt")
+        version_path = os.path.join(archive_path, "version.json")
         with open(version_path, "r") as version_file:
             read_data = version_file.read()
             if len(read_data):

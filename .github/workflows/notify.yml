@@ -31,7 +31,7 @@ jobs:
 
           URL: https://github.com/LUXROBO/modi2-module-release/releases/tag/${{ github.ref_name }}
 
-          버전정보: https://download.luxrobo.com/modi2-module-firmware/version.txt
+          버전정보: https://download.luxrobo.com/modi2-module-firmware/version.json
 
           릴리즈 노트: https://download.luxrobo.com/modi2-module-firmware/release_notes.md
 

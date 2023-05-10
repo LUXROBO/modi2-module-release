@@ -62,23 +62,9 @@ jobs:
         asset_name: ${{ github.ref_name }}.zip
         asset_content_type: application/zip
 
-    - name: deploy firmware
+    - name: deploy
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       run: |
-        aws s3 cp ./archive/firmware.zip s3://${{ secrets.AWS_S3_MODI2_MODULE_FIRMWARE_URL }}/firmware.zip --region ap-northeast-2 --acl public-read
-
-    - name: deploy version
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      run: |
-        aws s3 cp ./archive/version.txt s3://${{ secrets.AWS_S3_MODI2_MODULE_FIRMWARE_URL }}/version.txt --region ap-northeast-2 --acl public-read
-
-    - name: deploy release notes
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      run: |
-        aws s3 cp ./archive/release_notes.md s3://${{ secrets.AWS_S3_MODI2_MODULE_FIRMWARE_URL }}/release_notes.md --region ap-northeast-2 --acl public-read
+        aws s3 cp ./archive s3://${{ secrets.AWS_S3_MODI2_MODULE_FIRMWARE_URL }} --region ap-northeast-2 --acl public-read --recursive

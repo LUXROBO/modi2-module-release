@@ -19,15 +19,15 @@
 | Button | v1.0.1 |
 | Dial | v1.0.5 |
 | Display | **v1.3.2** |
-| Environment | v1.0.3 |
+| Environment | **v2.0.0**|
 | Imu | v1.1.4 |
 | Joystick | v1.1.2 |
 | Led | v1.0.1 |
 | Motor | **v1.2.3** |
 | Speaker | v1.2.2 |
 | Tof | **v1.1.5** |
-| Network app | **v1.1.5** |
-| Network sub | **v4.4.2** |
+| Network app | **v1.1.6** |
+| Network sub | **v4.4.3** |
 | Network ota | **v1.1.0** |
 | Camera app | **v1.0.1** |
 | Camera sub | **v1.0.1** |
@@ -48,6 +48,9 @@
 ### Motor
 1. 최단경로 이동 모드 추가
 
+### Environment
+1. RGB 센서 추가
+   
 ## Hotfix
 
 ### Network sub

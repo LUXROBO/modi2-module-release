@@ -1,10 +1,10 @@
 
 name: Notify
 
+# 기존 push/pull_request 설정을 삭제하거나 주석 처리
+# Teams 채널에서 Incoming Webhook 커넥터 비활성화
 on:
-  push:
-    tags:
-      - 'v*'
+  workflow_dispatch: # Actions 탭에서 수동으로 버튼을 눌러야만 실행됨
 
 jobs:
   notify:
